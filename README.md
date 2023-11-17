@@ -14,7 +14,6 @@ em um tipo int. Como você faria essa conversão e o que aconteceria se a parte
 fracionária da variável double não pudesse ser convertida em um int? Resolva o 
 problema através de um exemplo em C#.
 ## 4. Operadores Aritméticos:
-Residência em Tecnologia da Informação e Comunicação
 Problema: Dada a variável int x = 10 e a variável int y = 3, escreva código para calcular 
 e exibir o resultado da adição, subtração, multiplicação e divisão de x por y.
 ## 5. Operadores de Comparação:
