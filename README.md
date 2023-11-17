@@ -27,5 +27,4 @@ Problema: Suponha que você tenha duas variáveis booleanas, bool condicao1 = tr
 e bool condicao2 = false. Escreva código para verificar se ambas as condições são 
 verdadeiras e exiba o resultado.
 ## 8. Desafio de Mistura de Operadores:
-Problema: Dadas as variáveis int num1 = 7, int num2 = 3, e int num3 = 10, escreva 
-código para verificar se num1 é maior do que num2 e se num3 é igual a num1 + num2.
+Problema: Dadas as variáveis int num1 = 7, int num2 = 3, e int num3 = 10, escreva código para verificar se num1 é maior do que num2 e se num3 é igual a num1 + num2.
