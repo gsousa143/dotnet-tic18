@@ -2,6 +2,28 @@
 using System.Collections.Generic;
 using System.Linq;
 
+
+        GerenciadorDeTarefas gerenciador = new GerenciadorDeTarefas();
+
+        // Exemplo de uso:
+        gerenciador.CriarTarefa("Estudar C#", "Preparar para a aula", DateTime.Now.AddDays(3));
+        gerenciador.CriarTarefa("Fazer compras", "Comprar leite e pão", DateTime.Now.AddDays(7));
+        gerenciador.CriarTarefa("Ligar para o cliente", "Confirmar reunião", DateTime.Now.AddDays(1));
+
+        gerenciador.ListarTodasAsTarefas();
+
+        gerenciador.MarcarTarefaComoCompleta(0);
+
+        gerenciador.ListarTarefasPendentes();
+        gerenciador.ListarTarefasConcluidas();
+
+        gerenciador.ExcluirTarefa(1);
+
+        gerenciador.PesquisarTarefasPorPalavraChave("cliente");
+
+        gerenciador.MostrarEstatisticasBasicas();
+
+
 class GerenciadorDeTarefas
 {
     class Tarefa
