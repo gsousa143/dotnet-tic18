@@ -1,5 +1,5 @@
 ﻿
-Listas hospital = new Listas();
+Hospital h = new Hospital();
 
 class Pessoa{
     protected String nome;
@@ -18,28 +18,18 @@ class Pessoa{
         get{
         return cpf;
         }set{
-            cpf = value;
+            if ((value.Length==11)||value.All(char.IsDigit))
+                cpf = value;
+            else
+                throw new ArgumentException("CPF invalido");
+            
         }
     }
 }
 
 class Medico : Pessoa{
     private string crm;
-    public string Crm{
-        get{
-            return crm;
-        }
-        set{
-            crm = value;
-        }
-    }
-
-    public Medico(string nome,DateTime dataDeNascimento, string cpf, string crm){
-        this.nome = nome;
-        this.dataDeNascimento = dataDeNascimento;
-        this.cpf = cpf;
-        this.crm = crm;
-    }
+    public string Crm{get;set;}
 
 }
 
@@ -56,18 +46,14 @@ class Paciente : Pessoa{
                 throw new Exception("Sexo invalido");
         }
     }
+
     public string Sintomas{get;set;}
 
-    public Paciente(string nome,DateTime dataDeNascimento, string cpf, string sexo, string sintomas){
-        this.nome = nome;
-        this.dataDeNascimento = dataDeNascimento;
-        this.cpf = cpf;
-        this.sexo = sexo;
-        this.Sintomas = sintomas; 
-    }
+
+
 }
 
-class Listas{
+class Hospital{
     private List<Paciente> pacientes;
     private List<Medico> medicos;
 
@@ -87,7 +73,7 @@ class Listas{
             medicos = value;
         }
     }
-    public Listas(){
+    public Hospital(){
         pacientes = new List<Paciente>();
         medicos = new List<Medico>();
     }
@@ -104,6 +90,10 @@ class Listas{
         else
             Medicos.Add(novoMedico);
     }
+    
+
+
+
 }
 
 
