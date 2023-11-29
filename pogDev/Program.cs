@@ -1,14 +1,10 @@
 ﻿
 Listas hospital = new Listas();
 
-
-
-
-
-class virtual Pessoa{
-    private String nome;
-    private DateTime dataDeNascimento;
-    private string cpf;
+class Pessoa{
+    protected String nome;
+    protected DateTime dataDeNascimento;
+    protected string cpf;
     public string Nome{
         get{
             return nome;
@@ -54,7 +50,10 @@ class Paciente : Pessoa{
             return sexo;
         }
         set{
-            sexo = value;
+            if((value.ToLower().Equals("masculino"))||(value.ToLower().Equals("feminino")))
+                sexo = value;
+            else
+                throw new Exception("Sexo invalido");
         }
     }
     public string Sintomas{get;set;}
@@ -93,19 +92,18 @@ class Listas{
         medicos = new List<Medico>();
     }
 
-    adicionaPaciente(Paciente novoPaciente){
-        if(Pacientes.Contains(x => x.Cpf == novoPaciente.Cpf))
+    public void adicionaPaciente(Paciente novoPaciente){
+        if(Pacientes.Any(x => x.Cpf == novoPaciente.Cpf))
             throw new ArgumentException("Paciente ja incluso na lista");
         else
             Pacientes.Add(novoPaciente);
     }
-    adicionaMedico(Medico novoMedico){
-        if(Medicos.Contains(x => (x.Cpf == novoPaciente.Cpf)||(x.Crm == novoMedico.Crm)))
+    public void adicionaMedico(Medico novoMedico){
+        if(Medicos.Any(x => (x.Cpf == novoMedico.Cpf)||(x.Crm == novoMedico.Crm)))
             throw new ArgumentException("Medico ja incluso na lista");
         else
-            Pacientes.Add(novoPaciente);
+            Medicos.Add(novoMedico);
     }
 }
-
 
 
