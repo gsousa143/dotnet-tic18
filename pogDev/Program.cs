@@ -1,4 +1,11 @@
-﻿class virtual Pessoa{
+﻿
+Listas hospital = new Listas();
+
+
+
+
+
+class virtual Pessoa{
     private String nome;
     private DateTime dataDeNascimento;
     private string cpf;
@@ -11,7 +18,6 @@
         }
     }
     public DateTime DataDeNascimento{get;set;}
-
     public string Cpf{
         get{
         return cpf;
@@ -32,11 +38,18 @@ class Medico : Pessoa{
         }
     }
 
+    public Medico(string nome,DateTime dataDeNascimento, string cpf, string crm){
+        this.nome = nome;
+        this.dataDeNascimento = dataDeNascimento;
+        this.cpf = cpf;
+        this.crm = crm;
+    }
+
 }
 
 class Paciente : Pessoa{
-        private char sexo;
-    public char Sexo{
+    private string sexo;
+    public string Sexo{
         get{
             return sexo;
         }
@@ -45,6 +58,14 @@ class Paciente : Pessoa{
         }
     }
     public string Sintomas{get;set;}
+
+    public Paciente(string nome,DateTime dataDeNascimento, string cpf, string sexo, string sintomas){
+        this.nome = nome;
+        this.dataDeNascimento = dataDeNascimento;
+        this.cpf = cpf;
+        this.sexo = sexo;
+        this.Sintomas = sintomas; 
+    }
 }
 
 class Listas{
