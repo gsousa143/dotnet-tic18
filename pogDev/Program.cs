@@ -1,9 +1,21 @@
 ﻿
 Hospital h = new Hospital();
-
+try{
 h.adicionaMedico(new Medico("joao","12345678901","2000/12/03","2"));
 h.adicionaMedico(new Medico("maria","12345678921","1998/2/1","1"));
+h.adicionaPaciente(new Paciente("jorge","00222211111","2000/2/1","masculino",""));
+h.adicionaPaciente(new Paciente("jorga","00222211111","2001/4/1","feminino","gosta de programar"));
 h.MedicosIdade(18,30);
+h.AniversariosNoMes(3);
+h.PacientesComSintomas();
+h.PacientesOrdemAlfabetica();
+h.Pacientes.sexo("masculino");
+}
+catch(Exception e){
+    Console.WriteLine(e);
+    Console.ReadLine(); //espera o enter
+    
+}
 
 class Pessoa{
     protected String nome;
@@ -17,7 +29,14 @@ class Pessoa{
             nome = value;
         }
     }
-    public DateTime DataDeNascimento{get;set;}
+    public DateTime DataDeNascimento{
+        get{
+            return dataDeNascimento;
+        }
+        set{
+            dataDeNascimento = value;
+        }
+    }
     public string Cpf{
         get{
         return cpf;
@@ -159,13 +178,15 @@ class Hospital{
         }
     }
     public void PacientesSexo(string sexo){
-        relatorio = Pacientes.Where(x => (x.Sexo.Equals(sexo)).ToList();
+        List<Paciente> relatorio = new List<Paciente>();
+        relatorio = Pacientes.Where(x => (x.Sexo.Equals(sexo))).ToList();
         foreach(Paciente paciente in relatorio){
             Console.WriteLine($"Nome: {paciente.Nome}, CPF: {paciente.Cpf}");
         }
     }
 
     public void PacientesOrdemAlfabetica(){
+        List<Paciente> relatorio = new List<Paciente>();
         relatorio = Pacientes.OrderBy(x => x.Nome).ToList();
         foreach(Paciente paciente in relatorio){
             Console.WriteLine($"Nome: {paciente.Nome}, CPF: {paciente.Cpf}");
@@ -173,11 +194,21 @@ class Hospital{
     }
 
     public void PacientesComSintomas(){
-        relatorio = Pacientes.Where(x => x.Sintomas.IsNullOrEmpty()).ToList();
+        List<Paciente> relatorio = new List<Paciente>();
+        relatorio = Pacientes.Where(x => x.Sintomas.Length!=0).ToList();
         foreach(Paciente paciente in relatorio){
             Console.WriteLine($"Nome: {paciente.Nome}, CPF: {paciente.Cpf}");
         }
     }
+
+    public void AniversariosNoMes(int mes){
+        List<Pessoa> relatorio = new List<Pessoa>();
+        relatorio = Pessoas.Where(x => x.DataDeNascimento.Month == mes).ToList();
+        foreach(Pessoa pessoa in relatorio){
+            Console.WriteLine($"Nome: {pessoa.Nome}, CPF: {pessoa.Cpf}");
+        }
+    }
+
 }  
 
 
