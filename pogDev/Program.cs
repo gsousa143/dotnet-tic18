@@ -1,6 +1,10 @@
 ﻿
 Hospital h = new Hospital();
 
+h.adicionaMedico(new Medico("joao","12345678901","2000/12/03","2"));
+h.adicionaMedico(new Medico("maria","12345678921","1998/2/1","1"));
+h.MedicosIdade(18,30);
+
 class Pessoa{
     protected String nome;
     protected DateTime dataDeNascimento;
@@ -38,10 +42,15 @@ class Pessoa{
 
 class Medico : Pessoa{
     private string crm;
-    public string Crm{get;set;}
-        public Medico(string nome,string cpf,string dataDeNascimento,string crm){
-        this.nome = nome;
-        this.cpf = cpf;
+    public string Crm{
+        get{
+            return crm;
+        }
+        set{
+            crm = value;
+        }
+    }
+        public Medico(string nome,string cpf,string dataDeNascimento,string crm) : base(nome,cpf,dataDeNascimento){
         this.crm = crm;
         
     }
@@ -56,7 +65,7 @@ class Paciente : Pessoa{
         }
         set{
             if((value.ToLower().Equals("masculino"))||(value.ToLower().Equals("feminino")))
-                sexo = value;
+                sexo = value.ToLower();
             else
                 throw new Exception("Sexo invalido");
         }
@@ -71,7 +80,7 @@ class Paciente : Pessoa{
     }
 
 
-    public Paciente(string nome,string cpf,string dataDeNascimento,string sexo,string sintomas){
+    public Paciente(string nome,string cpf,string dataDeNascimento,string sexo,string sintomas):base(nome,cpf,dataDeNascimento){
         
         this.sintomas = sintomas;
         if((sexo.Equals("masculino"))||(sexo.Equals("feminino")))
@@ -149,6 +158,26 @@ class Hospital{
             Console.WriteLine($"Nome: {paciente.Nome}, CPF: {paciente.Cpf}");
         }
     }
-}
+    public void PacientesSexo(string sexo){
+        relatorio = Pacientes.Where(x => (x.Sexo.Equals(sexo)).ToList();
+        foreach(Paciente paciente in relatorio){
+            Console.WriteLine($"Nome: {paciente.Nome}, CPF: {paciente.Cpf}");
+        }
+    }
+
+    public void PacientesOrdemAlfabetica(){
+        relatorio = Pacientes.OrderBy(x => x.Nome).ToList();
+        foreach(Paciente paciente in relatorio){
+            Console.WriteLine($"Nome: {paciente.Nome}, CPF: {paciente.Cpf}");
+        }
+    }
+
+    public void PacientesComSintomas(){
+        relatorio = Pacientes.Where(x => x.Sintomas.IsNullOrEmpty()).ToList();
+        foreach(Paciente paciente in relatorio){
+            Console.WriteLine($"Nome: {paciente.Nome}, CPF: {paciente.Cpf}");
+        }
+    }
+}  
 
 
