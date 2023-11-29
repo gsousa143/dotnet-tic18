@@ -90,10 +90,23 @@ class Hospital{
         else
             Medicos.Add(novoMedico);
     }
-    
 
 
+    public void MedicosIdade(int idadeInf,int idadeSup){
+        List<Medico> relatorio = new List<Medico>();
+        relatorio = Medicos.Where(x => (DateTime.Now.Year-x.DataDeNascimento.Year>idadeInf)&&(DateTime.Now.Year-x.DataDeNascimento.Year>idadeSup)).ToList();
+        foreach(Medico medico in relatorio){
+            Console.WriteLine($"Nome: {medico.Nome}, CRM: {medico.Crm}");
+        }
+    }
 
+    public void PacienteIdade(int idadeInf,int idadeSup){
+        List<Paciente> relatorio = new List<Paciente>();
+        relatorio = Pacientes.Where(x => (DateTime.Now.Year-x.DataDeNascimento.Year>idadeInf)&&(DateTime.Now.Year-x.DataDeNascimento.Year>idadeSup)).ToList();
+        foreach(Paciente paciente in relatorio){
+            Console.WriteLine($"Nome: {paciente.Nome}, CPF: {paciente.Cpf}");
+        }
+    }
 }
 
 
