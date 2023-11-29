@@ -25,16 +25,31 @@ class Pessoa{
             
         }
     }
+
+    public Pessoa(string nome, string cpf, string dataDeNascimento){
+        this.nome = nome;
+        if ((cpf.Length==11)||cpf.All(char.IsDigit))
+                this.cpf = cpf;
+            else
+                throw new ArgumentException("CPF invalido");
+        this.dataDeNascimento = DateTime.Parse(dataDeNascimento);
+    }
 }
 
 class Medico : Pessoa{
     private string crm;
     public string Crm{get;set;}
-
+        public Medico(string nome,string cpf,string dataDeNascimento,string crm){
+        this.nome = nome;
+        this.cpf = cpf;
+        this.crm = crm;
+        
+    }
 }
 
 class Paciente : Pessoa{
     private string sexo;
+    private string sintomas;
     public string Sexo{
         get{
             return sexo;
@@ -46,16 +61,40 @@ class Paciente : Pessoa{
                 throw new Exception("Sexo invalido");
         }
     }
+    public string Sintomas{
+        get{
+            return sintomas;
+        }
+        set{
+            sintomas = value;
+        }
+    }
 
-    public string Sintomas{get;set;}
 
-
+    public Paciente(string nome,string cpf,string dataDeNascimento,string sexo,string sintomas){
+        
+        this.sintomas = sintomas;
+        if((sexo.Equals("masculino"))||(sexo.Equals("feminino")))
+            this.sexo = sexo;
+        else
+            throw new Exception("Sexo invalido");
+    }
 
 }
 
 class Hospital{
     private List<Paciente> pacientes;
     private List<Medico> medicos;
+    private List<Pessoa> pessoas;
+
+    public List<Pessoa> Pessoas{
+        get{
+            return pessoas;
+        }
+        set{
+            pessoas = value;
+        }
+    }
 
     public List<Paciente> Pacientes{
         get{
@@ -76,6 +115,7 @@ class Hospital{
     public Hospital(){
         pacientes = new List<Paciente>();
         medicos = new List<Medico>();
+        pessoas = new List<Pessoa>();
     }
 
     public void adicionaPaciente(Paciente novoPaciente){
@@ -83,12 +123,14 @@ class Hospital{
             throw new ArgumentException("Paciente ja incluso na lista");
         else
             Pacientes.Add(novoPaciente);
+            Pessoas.Add(novoPaciente);
     }
     public void adicionaMedico(Medico novoMedico){
         if(Medicos.Any(x => (x.Cpf == novoMedico.Cpf)||(x.Crm == novoMedico.Crm)))
             throw new ArgumentException("Medico ja incluso na lista");
         else
             Medicos.Add(novoMedico);
+            Pessoas.Add(novoMedico);
     }
 
 
